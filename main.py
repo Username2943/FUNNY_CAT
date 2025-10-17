@@ -1,17 +1,22 @@
 import os
 from dotenv import load_dotenv
-from telegram.ext import Updater, CommandHandler
+import telebot
 
 from handlers.start import start
 
+
 load_dotenv()
-BOT_TOKEN=os.getenv("TOKEN")
+BOT_TOKEN = os.getenv("TOKEN")
 
-def main():
-    updater = Updater(BOT_TOKEN, use_context=True)
-    dp = updater.dispatcher
+bot = telebot.TeleBot(BOT_TOKEN)
 
-    dp.add_handler(CommandHandler("start", start))
+
+@bot.message_handler(commands=['start'])
+def handle_start(message):
+    start(bot, message)
+
+
 
 if __name__ == "__main__":
-    main()
+    print("наш бот запущен... ")
+    bot.infinity_polling()
