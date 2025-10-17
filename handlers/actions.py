@@ -17,4 +17,4 @@ def handle_action(bot, message):
         photo_path2 = os.path.join("media", "kosecki.jpg")
         if os.path.exists(photo_path2):
             with open(photo_path2, 'rb') as photo:
-                bot.send_photo(message.chat.id, photo, caption='Кот доволен, он счастлив')
+                bot.send_photo(message.chat.id, photo, caption='Кот улыбается')
